@@ -1,5 +1,8 @@
 <template>
-    <Carousel v-model="value2"   @on-change="change2">
+    <Carousel v-model="value2" 
+      :dots="setting.dots"
+      :arrow="setting.arrow"
+      @on-change="change2">
         <Carousel-item v-for="(item,i) in 4" :key="i" >
          <div class="demo-carousel">
                 <div class="movie-item">
@@ -11,13 +14,10 @@
                       <div class="img-frame">
                         <img :src="list.photo" alt="" />
                       </div>
-                      <p class="item-title">{{ list.name }}</p>
-                      <div class="item-grade">
-                        <span
-                          class="item-star"
-                          style="background-position: 0px -22px"></span>
-                        <span class="item-score">{{ list.score }}</span>
-                      </div>
+                      <p class="item-title">{{ list.name }}
+                         <span class="item-score">{{ list.score }}</span>
+                      </p>
+                       
                     </li>
                   </ul>
                 </div>
@@ -29,22 +29,30 @@
     export default {
         data () {
             return {
-                value2: 0
+                value2: 0,
+                 setting: {
+                   dots:'none',
+                   arrow: "always",
+                   },
+                   lists:[]
             }
+        },
+        mounted(){
+          this.getData1()
         },
         methods:{
          change2(oldValue, value){
-      this.getData(value)
+           console.log(value);
+         this.getData1(value)
     },
-     getData(p=0){
-       this.axios
-      .get("http://localhost:3000/lists", 
+     getData1(n=0){
+       this.axios.get("http://localhost:3000/items", 
     {  params:{
-        page:p,
-        limit:10
+        page1:n,
+        num1:10
       }})
       .then((res) => {
-        // console.log(res.data);
+        console.log(res.data);
         this.lists = res.data;
       }).catch((err) => {
         console.log(err);
@@ -54,6 +62,15 @@
     }
 </script>
 <style lang="css" scoped>
+.carousel-con {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.carousel-item {
+  margin-top: 20px;
+  width: 115px;
+}
 .img-frame {
   height: 161px;
   overflow: hidden;
@@ -63,13 +80,11 @@
   width: 115px;
 }
 .item-title {
-  color: #333;
-  font-size: 14px;
+  color: #37a;
+  margin: 5px 0 0;
+  font-size: 13px;
   text-align: center;
-  white-space: nowrap;
-  height: 22px;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 .item-grade {
   height: 19px;
@@ -85,7 +100,6 @@
   background: url(../assets/images/star.png) no-repeat;
 }
 .item-score {
-  float: left;
   color: #e09015;
   font-size: 12px;
   margin-left: 2px;

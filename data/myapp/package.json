@@ -11,10 +11,9 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.7",
     "pug": "2.0.0-beta11",
-    "mysql": "^2.18.1"
-  },
-  "devDependencies": {
-    
+    "semver": "^7.3.5"
   }
 }

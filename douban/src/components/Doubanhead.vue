@@ -3,7 +3,7 @@
    <div class="db-nav">
       <div class="db-wrap">
           <div class="nav-primary">
-                 <router-link to="/">
+                 <router-link to="/Homewrapper">
                  <div class="nav-logo">
                    <a href="">豆瓣</a>
                </div> </router-link>
@@ -15,14 +15,14 @@
           <div class="nav-second">
              <div class="nav-items">
                 <ul>
-                   <li><a href="#">影讯&购票</a></li>
-                   <li><a href="#">选电影</a></li>
-                   <li><a href="#">电视剧</a></li>
-                   <li><a href="#">排行榜</a></li>
-                   <li><a href="#">分类</a></li>
-                   <li><a href="#">影评</a></li>
-                   <li><a href="#">2020年度榜单</a></li>
-                   <li><a href="#">2020书影音报告</a></li>
+                   <li><a href="#"> <router-link to="/Buyticket">影讯&购票 </router-link></a></li>
+                   <li><a href="#"> <router-link to="/Choicemovie">选电影</router-link></a></li>
+                   <li><a href="#">  <router-link to="/Tvplay">电视剧</router-link></a></li>
+                   <li><a href="#">  <router-link to="/Ranklist">排行榜 </router-link></a></li>
+                   <li><a href="#">  <router-link to="/Classify">分类</router-link></a></li>
+                   <li><a href="#">  <router-link to="/Filmreview">影评</router-link></a></li>
+                   <li><a href="https://movie.douban.com/annual/2020?source=navigation">2020年度榜单</a></li>
+                   <li><a href="https://movie.douban.com/annual/2020?source=movie_navigation">2020书影音报告</a></li>
                 </ul>
              </div>
              <a href="#" class="photo"></a>
@@ -30,6 +30,19 @@
       </div>
    </div>
    <router-view></router-view>
+    <div class="footer">
+      <span class="footer-left">
+    © 2005－2021 douban.com, all rights reserved 北京豆网科技有限公司</span>
+      <span class="footer-right">
+           <a href="https://www.douban.com/about">关于豆瓣</a>
+         · <a href="https://www.douban.com/jobs">在豆瓣工作</a>
+         · <a href="https://www.douban.com/about?topic=contactus">联系我们</a>
+         · <a href="https://www.douban.com/about/legal">法律声明</a>
+         · <a href="https://help.douban.com/?app=movie" target="_blank">帮助中心</a>
+         · <a href="https://www.douban.com/doubanapp/">移动应用</a>
+         · <a href="https://www.douban.com/partner/">豆瓣广告</a>
+      </span>
+   </div>
    </div>
 </template>
 
@@ -125,4 +138,20 @@ export default {
             margin-left: 200px;
             background: url(../assets/images/db-2020.png) center/contain no-repeat;
          }
+   .footer{
+   width: 1040px;
+    margin: 0 auto;
+    color: #999;
+    font-size: 12px;
+    padding: 6px 0;
+    margin-top: 40px;
+    overflow: hidden;
+    border-top: 1px dashed #ddd;
+   }
+   .footer-left{
+     float: left;
+   }
+   .footer-right{
+     float: right;
+   }
 </style>

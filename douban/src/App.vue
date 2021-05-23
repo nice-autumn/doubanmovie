@@ -4,12 +4,17 @@
   </div>
 </template>
 <script>
-import Doubanhead from './components/Doubanhead'
+import Doubanhead from './components/Doubanhead.vue'
 
 export default{
   components:{
      Doubanhead
   },
+//   created(){
+//     if(this.$router.path!=="/Homewrapper"){
+//       this.$router.replace('/Homewrapper')
+//     }
+//   }
 }
 </script>
 
