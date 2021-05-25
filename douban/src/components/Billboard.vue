@@ -32,7 +32,6 @@ export default {
    methods:{
      getRank(){
          this.axios.get('http://api.douban.com/v2/movie/weekly?apikey=0df993c66c0c636e29ecbb5344252a4a').then((res)=>{
-             console.log(res.data.subjects);
              this.ranks=res.data.subjects
          }).catch((err)=>{
              console.log(err);

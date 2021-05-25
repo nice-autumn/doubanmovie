@@ -66,7 +66,6 @@ export default {
           num:10
         }
       }).then((res)=>{
-        console.log(res.data);
         this.comments=res.data
       }).catch((err)=>{
         console.log(err);
@@ -165,7 +164,7 @@ a:hover{
       .rev-info h3 a{
           font-weight: normal;
           font-size: 14px;
-          color: #666699;
+          color: #37a;
         }
         .com-word{
           color: #494949;
@@ -174,7 +173,9 @@ a:hover{
          overflow: hidden;
          word-break: break-word;
          cursor: pointer;
-        
+        }
+        .com-word a{
+          color: #37a;
         }
         /* 喜欢 */
         .action{

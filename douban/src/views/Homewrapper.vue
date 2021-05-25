@@ -38,7 +38,7 @@
                         <span class="item-score">{{ list.score }}</span>
                       </div>
                       <span class="item-seat">
-                        <a href="#">选座购票</a>
+                        <a href="#" @click="buy">选座购票</a>
                       </span>
                     </li>
                   </ul>
@@ -159,7 +159,6 @@ export default {
         page:p
       }})
       .then((res) => {
-        // console.log(res.data);
         this.lists = res.data;
       }).catch((err) => {
         console.log(err);
@@ -172,11 +171,17 @@ export default {
         num:4
       }
     }).then((res)=>{
-      console.log(res.data);
       this.comments=res.data
     }).catch((err)=>{
       console.log(err);
     })
+  },
+  buy(){
+    if(sessionStorage.getItem('name')){
+      alert('购票成功')
+    }else{
+      this.$router.push({path:'/Login'})
+    }
   }
   },
  

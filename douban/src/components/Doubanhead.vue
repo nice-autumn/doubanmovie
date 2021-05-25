@@ -23,6 +23,10 @@
                    <li><a href="#">  <router-link to="/Filmreview">影评</router-link></a></li>
                    <li><a href="https://movie.douban.com/annual/2020?source=navigation">2020年度榜单</a></li>
                    <li><a href="https://movie.douban.com/annual/2020?source=movie_navigation">2020书影音报告</a></li>
+                   <li>
+                        <span class="login"  v-if="name==null"><router-link to="/Login"> 登录</router-link> </span>
+                        <span class="login" @click="remove" v-else>退出登录</span>
+                   </li>
                 </ul>
              </div>
              <a href="#" class="photo"></a>
@@ -48,11 +52,35 @@
 
 <script>
 export default {
-
+   data(){
+      return{
+         name:''
+      }
+   },
+   created(){
+      this.name=sessionStorage.getItem('name')
+   },
+   // watch:{
+   //    name:{
+   //       handler: function(val, oldVal){
+   //         this.remove(val)
+   //       },
+   //       immediate:true
+   //    }
+   // },
+  methods:{
+   remove(){
+         sessionStorage.clear()
+         window.location.reload()
+     }
+  }
 }
 </script>
 
 <style >
+   a{
+      cursor: pointer;
+   }
    .db-nav{
     position: relative;
     width: 100%;
@@ -107,6 +135,14 @@ export default {
       border-top-right-radius: 5px;
       border-bottom-right-radius: 5px;
       background-color: #8B949E;
+   }
+   .login{
+      cursor: pointer;
+      color: #37a;
+   }
+   .login:hover{
+      color: #fff;
+      background-color: #27a;
    }
    .ipt-btn img{
          width: 18px;

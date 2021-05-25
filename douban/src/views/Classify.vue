@@ -3,24 +3,24 @@
        <h1>选影视</h1>
            <div class="cla-tab">
                <ul class="tags">
-                   <li v-for="(item1,index) in tags1" :key="index">
-                      <span :class="num==index?'caption cap-checked':'caption'" @click="change(index)">{{item1}}</span> </li>
+                   <li v-for="(item1,index1) in tags1" :key="index1">
+                      <span :class="num1==index1?'caption cap-checked':'caption'" @click="change1(index1)">{{item1}}</span> </li>
                </ul>
                <ul class="tags">
-                <li v-for="(item2,index) in tags2" :key="index">
-                   <span :class="num==index?'caption cap-checked':'caption'" @click="change(index)">{{item2}}</span> </li>
+                <li v-for="(item2,index2) in tags2" :key="index2">
+                   <span :class="num2==index2?'caption cap-checked':'caption'" @click="change2(index2)">{{item2}}</span> </li>
             </ul>
             <ul class="tags">
-                <li v-for="(item3,index) in tags3" :key="index">
-                   <span :class="num==index?'caption cap-checked':'caption'" @click="change(index)">{{item3}}</span> </li>
+                <li v-for="(item3,index3) in tags3" :key="index3">
+                   <span :class="num3==index3?'caption cap-checked':'caption'" @click="change3(index3)">{{item3}}</span> </li>
             </ul>
             <ul class="tags">
-                <li v-for="(item4,index) in tags4" :key="index">
-                   <span :class="num==index?'caption cap-checked':'caption'" @click="change(index)">{{item4}}</span> </li>
+                <li v-for="(item4,index4) in tags4" :key="index4">
+                   <span :class="num4==index4?'caption cap-checked':'caption'" @click="change4(index4)">{{item4}}</span> </li>
             </ul>
             <ul class="tags">
-                <li v-for="(item5,index) in tags5" :key="index">
-                   <span :class="num==index?'caption cap-checked':'caption'" @click="change(index)">{{item5}}</span> </li>
+                <li v-for="(item5,index5) in tags5" :key="index5">
+                   <span :class="num5==index5?'caption cap-checked':'caption'" @click="change5(index5)">{{item5}}</span> </li>
             </ul>
            </div>
            <div class="tags-nav">
@@ -67,8 +67,11 @@ export default {
     '法国','德国','意大利','西班牙','印度','泰国','俄罗斯','伊朗','加拿大','澳大利亚','爱尔兰','瑞典','巴西','丹麦'],
     tags4:['全部年代','2021','2020','2019','2021年代','2000年代','90年代','80年代','70年代','60年代','更早'],
     tags5:['全部特色','经典','青春','文艺','搞笑','励志','魔幻','感人','女性','+自定义标签'],
-    num:0,
     num1:0,
+    num2:0,
+    num3:0,
+    num4:0,
+    num5:0,
     classify:[],
     show:true,
     items:[]
@@ -78,12 +81,21 @@ export default {
    this.getTvs()
   },
      methods:{
-      change(i){
-          this.num=i
+      change1(i){
+          this.num1=i
       },
-      // different(n){
-      //     this.num1=n
-      // }
+       change2(i){
+          this.num2=i
+      },
+       change3(i){
+          this.num3=i
+      },
+       change4(i){
+          this.num4=i
+      },
+       change5(i){
+          this.num5=i
+      },
       getTvs(){
         this.axios.get("http://localhost:3000/items", 
     {  params:{
@@ -91,7 +103,6 @@ export default {
         num1:20
       }})
       .then((res) => {
-        console.log(res.data);
         this.classify = res.data;
         this.items=[...this.items,...this.classify]
       }).catch((err) => {
@@ -100,7 +111,6 @@ export default {
       },
       getMuch2(){
       this.page1++
-      console.log(this.page1++);
       this.getTvs(this.page)
     },
     }

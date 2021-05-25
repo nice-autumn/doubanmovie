@@ -75,18 +75,15 @@ export default {
       this.num=i
       this.tab=txt=='热门'?'hot':txt=='最新'?'new':txt=='经典'?'classics':txt=='豆瓣高分'?'high':'cold'
       localStorage.setItem('name',this.tab)
-      console.log(this.tab);
-      console.log(i);
       this.getData1(this.tab)
     },
-      getData1(tab='hot',more=0){  
+      getData1(tab='hot',more=2){  
        this.axios.get("http://localhost:3000/tabs", 
     {  params:{
         tab,
         more
       }})
       .then((res) => {
-        console.log(res.data);
         this.lists = res.data;
         this.list=[...this.list,...this.lists]
       }).catch((err) => {
@@ -95,7 +92,6 @@ export default {
     },
     getMuch(){
       this.more++
-      console.log(localStorage.getItem('name'), this.more++);
       this.getData1(localStorage.getItem('name'),this.more)
     }
  }
@@ -123,6 +119,7 @@ export default {
   font-size: 14px;
   border-radius: 2px;
   background: none;
+  cursor: pointer;
 }
 .tabslist:hover{
   background-color: #eee;

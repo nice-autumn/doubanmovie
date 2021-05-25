@@ -64,15 +64,46 @@ router.get('/changetv', function(req, res, next) {
 
 //小组
 router.get('/grouptv', function(req, res, next) {
- connection.query(`select * from group`,(err,rows,fields)=>{
+ connection.query('select * from `group` ',(err,rows,fields)=>{
+   if(err){
+     console.log(err);
+   }
    res.send(rows)
   })
 });
 
 //排行榜
 router.get('/rank', function(req, res, next) {
- connection.query(`select * from rank;`,(err,rows,fields)=>{
+ connection.query('select * from `rank`;',(err,rows,fields)=>{
    res.send(rows)
   })
 });
+
+//注册
+router.post('/register',(req,res)=>{
+  var admin=req.body.admin
+  var psw=req.body.psw
+   connection.query(`insert into user(username,psw) values('${admin}','${psw}');`,(err,rows,fields)=> {
+    console.log(rows);
+  })
+});
+
+//登录
+router.post('/login',(req,res)=>{
+  console.log(req.body.admin);
+  var admins=req.body.admins
+  var psws=req.body.psws
+  connection.query(`select * from user where username='${admins}' && psw='${psws}';`,(err,rows,fields)=> {
+      console.log(rows);
+      if(rows.length==0){
+          res.send({
+              code:1 //代表数据库用户名密码不一致 登陆失败
+          })
+      }else{
+          res.send({
+              code:0 //代表数据库用户密码一致 登陆成功
+          })
+      }
+})
+})
 module.exports = router;

@@ -1,20 +1,16 @@
 <template>
   <div id="app">
-    <Doubanhead></Doubanhead>
+   <router-view v-wechat-title='$route.meta.title'></router-view>
   </div>
 </template>
 <script>
-import Doubanhead from './components/Doubanhead.vue'
 
 export default{
-  components:{
-     Doubanhead
-  },
-//   created(){
-//     if(this.$router.path!=="/Homewrapper"){
-//       this.$router.replace('/Homewrapper')
-//     }
-//   }
+  created(){
+    if(this.$router.path!=="/Homewrapper"){
+      this.$router.replace('/Homewrapper')
+    }
+  }
 }
 </script>
 
@@ -28,5 +24,6 @@ li{
 }
 a{
   text-decoration: none;
+  cursor: pointer;
 }
 </style>

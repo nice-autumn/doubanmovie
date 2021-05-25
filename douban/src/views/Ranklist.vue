@@ -5,19 +5,19 @@
       <h2>豆瓣新片榜· · · · · ·</h2>
       <div class="rank-con">
         <ul>
-         <li class="com-items" v-for="(dis,index) in comments" :key="index">
+         <li class="com-items" v-for="(dis,index) in ranks" :key="index">
               <div class="com-img">
-                <img :src="dis.picture" alt="">
+                <img :src="dis.pic" alt="">
               </div>
               <div class="com-content">
-                <span><a href="#">{{dis.moviename}}</a></span>
+                <span><a href="#">{{dis.title}}</a></span>
                 <div class="com-word">
-                 {{dis.content}}
+                 {{dis.actor}}
                 </div>
                 <div class="rank-star">
                   <span class="item-star"></span>
-                  <span class="rank-score">7.9</span>
-                  <span>(1234评价)</span>
+                  <span class="rank-score">{{dis.score}}</span>
+                  <span>{{dis.comment}}</span>
                 </div>
               </div>
             </li>
@@ -43,7 +43,7 @@ export default {
   components: { Billboard,North },
   data(){  
     return{
-      comments:[]
+      ranks:[]
     }
   },
   created() {
@@ -51,14 +51,8 @@ export default {
   },
  methods:{
     getCom(){
-    this.axios.get("http://localhost:3000/comment",{
-      params:{
-        dis:0,
-        num:10
-      }
-    }).then((res)=>{
-      console.log(res.data);
-      this.comments=res.data
+    this.axios.get("http://localhost:3000/rank").then((res)=>{
+      this.ranks=res.data
     }).catch((err)=>{
       console.log(err);
     })

@@ -95,8 +95,6 @@ export default {
       this.num=i
       this.tab1=txt=='热门'?'HOT':txt=='美剧'?'USA':txt=='英剧'?'ENG':'CHA'
       localStorage.setItem('name1',this.tab1)
-      console.log(this.tab1);
-      console.log(i);
       this.getData1(this.tab1)
     },
       getData1(tab1='HOT',more1=0){  
@@ -106,7 +104,6 @@ export default {
         more1
       }})
       .then((res) => {
-        console.log(res.data);
         this.lists = res.data;
         this.list=[...this.list,...this.lists]
       }).catch((err) => {
@@ -119,9 +116,8 @@ export default {
       this.getData1(localStorage.getItem('name1'),this.more)
     },
   getGroup(){
-     this.axios.get("http://localhost:3000/groups")
+     this.axios.get("http://localhost:3000/grouptv")
       .then((res) => {
-        console.log(res.data);
         this.groups= res.data;
       }).catch((err) => {
         console.log(err);
@@ -160,6 +156,7 @@ export default {
   font-size: 14px;
   border-radius: 2px;
   background: none;
+  cursor: pointer;
 }
 .tabslist:hover{
   background-color: #eee;
@@ -269,6 +266,7 @@ export default {
   margin: 0 0 10px 0;
   float: left;
   text-align: center;
+  font-size: 13px;
 }
 .gro-img{
   margin: 0;

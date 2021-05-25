@@ -25,7 +25,7 @@
                           <span class="tic-star" style="background-position:0 -11px"></span>
                           <span class="tic-score">{{tic.score}}</span>
                         </div>
-                      <p class="tic-buy" >选座购票</p>
+                      <p class="tic-buy" @click="buy1">选座购票</p>
                   </li>
              </ul>
               </div>
@@ -45,7 +45,7 @@
                           <span class="tic-star" style="background-position:0 -11px"></span>
                           <span class="tic-score">{{mor.score}}</span>
                         </div>
-                      <p class="tic-buy" >选座购票</p>
+                      <p class="tic-buy" @click="buy1">选座购票</p>
                   </li>
              </ul>
               </div>
@@ -69,7 +69,7 @@
                       <div class="tic-up">
                         <p>05月28日上映</p>
                         </div>
-                      <p class="tic-buy">选座购票</p>
+                      <p class="tic-buy" @click="buy1">选座购票</p>
                   </li>
              </ul>
               </div>
@@ -102,7 +102,6 @@ export default {
         num1:15
       }
     }).then((res)=>{
-      console.log(res.data);
       this.tickets=res.data
     }).catch((err)=>{
       console.log(err);
@@ -115,7 +114,6 @@ export default {
         num1:10
       }
     }).then((res1)=>{
-      console.log(res1.data);
       this.movies=res1.data
     }).catch((err1)=>{
       console.log(err1);
@@ -129,16 +127,21 @@ export default {
         num1:10
       }
     }).then((res)=>{
-      console.log(res.data);
       this.more=res.data
     }).catch((err)=>{
       console.log(err);
     })
     this.show1 = false
     this.show2 = true
+  },
+   buy1(){
+    if(sessionStorage.getItem('name')){
+      alert('购票成功')
+    }else{
+      this.$router.push({path:'/Login'})
+    }
   }
-    
-   }
+  }
 }
 </script>
 
@@ -216,6 +219,7 @@ export default {
   border-radius: 2px;
   margin: 0 auto;
   background: #EBEBEB;
+  cursor: pointer;
 }
 .now-more{
   margin-bottom: 32px;

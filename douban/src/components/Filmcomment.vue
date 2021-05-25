@@ -42,7 +42,6 @@
         },
         methods:{
          change2(oldValue, value){
-           console.log(value);
          this.getData1(value)
     },
      getData1(n=0){
@@ -51,7 +50,6 @@
         page2:n
       }})
       .then((res) => {
-        console.log(res.data);
         this.lists = res.data;
       }).catch((err) => {
         console.log(err);
